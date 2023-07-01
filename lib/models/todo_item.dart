@@ -15,4 +15,12 @@ class TodoItem {
       _$TodoItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$TodoItemToJson(this);
+
+  Map<String, dynamic> toDatabaseMap() {
+    return {
+      'id': id,
+      'title': title,
+      'isCompleted': isCompleted ? 1 : 0,
+    };
+  }
 }
