@@ -13,9 +13,9 @@ class TodoFeed extends ConsumerWidget {
     final provider = ref.watch(todoProvider.notifier);
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      // onPanDown: (_) {
-      //   FocusScope.of(context).requestFocus(FocusNode());
-      // },
+      onPanDown: (_) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
       child: ListView.builder(
         controller: scrollController,
         shrinkWrap: true,
