@@ -1,6 +1,5 @@
 import 'package:fluttertodo/models/todo_item.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 
 class DatabaseHelper {
   final Database _database;
@@ -8,14 +7,23 @@ class DatabaseHelper {
   DatabaseHelper(this._database);
 
   Future<List<TodoItem>> getTodos() async {
-    final db = await _database;
+    final db = _database;
     final result = await db.query('todos');
     return result.map((data) => TodoItem.fromJson(data)).toList();
   }
 
-  Future<void> insertOrUpdateTodo(TodoItem todo) async {
-    print(todo.toDatabaseMap());
+  Future<void> insertTodo(TodoItem todo) async {
     await _database.insert('todos', todo.toDatabaseMap());
+  }
+
+  Future<void> updateTodoStatus(TodoItem todo) async {
+    await _database.update(
+      'todos',
+      {'isCompleted': todo.getIsCompletedAsInt()},
+      where: 'id = ?',
+      whereArgs: [todo.id],
+    );
+    // await _database.update('todos', todo.toDatabaseMap(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<void> deleteTodos(String id) async {

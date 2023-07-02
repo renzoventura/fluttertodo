@@ -33,6 +33,7 @@ class _TodoFeedScreenState extends ConsumerState<TodoFeedScreen> {
       child: SafeArea(
         bottom: false,
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(

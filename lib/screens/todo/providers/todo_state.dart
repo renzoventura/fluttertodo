@@ -17,11 +17,11 @@ class TodoState {
     return TodoState(todos: todos);
   }
 
-  TodoState updateTodoStatus({required String id}) {
+  TodoState updateTodoStatus({required TodoItem item}) {
     TodoItem? itemToUpdate =
-        todos.where((element) => element.id == id).firstOrNull;
+        todos.where((element) => element.id == item.id).firstOrNull;
     if (itemToUpdate != null) {
-      itemToUpdate.isCompleted = !itemToUpdate.isCompleted;
+      itemToUpdate = item;
     }
     return TodoState(todos: todos);
   }

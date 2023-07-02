@@ -38,7 +38,7 @@ class TodoTile extends ConsumerWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(
         onTap: () {
-          provider.updateTodo(item.id);
+          provider.updateTodo(item);
         },
         child: Container(
           width: double.infinity,
@@ -52,14 +52,18 @@ class TodoTile extends ConsumerWidget {
               children: [
                 getCheckBox(),
                 const SizedBox(width: 8),
-                Text(
-                  item.title,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                        decoration: textDecoration,
-                        decorationColor: Colors.black12,
-                      ),
+                Expanded(
+                  child: Text(
+                    item.title,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: textColor,
+                          decoration: textDecoration,
+                          decorationColor: Colors.black12,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),

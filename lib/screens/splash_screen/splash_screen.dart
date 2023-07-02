@@ -3,7 +3,6 @@ import 'package:fluttertodo/components/primary_button.dart';
 import 'package:fluttertodo/constants/constants.dart';
 import 'package:fluttertodo/di/get_it.dart';
 import 'package:fluttertodo/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
         child: Column(

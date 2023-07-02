@@ -21,12 +21,18 @@ class TodoProvider extends StateNotifier<TodoState> {
   }
 
   void addTodo(TodoItem item) async {
-    await db.insertOrUpdateTodo(item);
+    await db.insertTodo(item);
     state = state.addTodo(todoItem: item);
   }
 
-  void updateTodo(String id) {
-    state = state.updateTodoStatus(id: id);
+  void updateTodo(TodoItem item) async {
+    try {
+      item.isCompleted = !item.isCompleted;
+      await db.updateTodoStatus(item);
+      state = state.updateTodoStatus(item: item);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   void clearAllTodos() async {
