@@ -40,13 +40,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 ],
               ),
             ),
-              PrimaryButton(
-                onTap: () {
-                  sharedPrefs.setIsSplashScreenSkipped(true);
-                  Navigator.of(context).pushNamed(todoFeedScreenRoute);
-                },
-                text: 'CONTINUE',
-              ),
+            PrimaryButton(
+              onTap: () {
+                sharedPrefs.setIsSplashScreenSkipped(true);
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    todoFeedScreenRoute, (Route<dynamic> route) => false);
+                // Navigator.of(context).pushNamed(todoFeedScreenRoute);
+              },
+              text: 'CONTINUE',
+            ),
           ],
         ),
       ),
